@@ -137,7 +137,7 @@ export default function ProductImageManager({
     setIsUploading(true);
 
     try {
-      // If uploading a local file from disk via /api/upload
+      // If uploading a local file from disk
       if (uploadMode === 'file') {
         if (!selectedFile) {
           showNotification('Please select an image file to upload', 'error');
@@ -145,23 +145,58 @@ export default function ProductImageManager({
           return;
         }
 
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-        formData.append('folder', 'okara/products');
+        const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+        const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+        let uploadSuccess = false;
 
-        const res = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        // 1. Direct Cloudinary upload (works on static GitHub Pages)
+        if (cloudName && uploadPreset) {
+          try {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('upload_preset', uploadPreset);
+            formData.append('folder', 'okara/products');
 
-        const data = await res.json();
+            const directRes = await fetch(
+              `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+              {
+                method: 'POST',
+                body: formData,
+              }
+            );
 
-        if (!res.ok || !data.url) {
-          throw new Error(data.error || 'Failed to upload to Cloudinary');
+            if (directRes.ok) {
+              const directData = await directRes.json();
+              finalImageUrl = directData.secure_url || directData.url;
+              cloudinaryPublicId = directData.public_id;
+              uploadSuccess = true;
+            }
+          } catch (e) {
+            console.warn('Direct Cloudinary upload error, trying /api/upload fallback:', e);
+          }
         }
 
-        finalImageUrl = data.url;
-        cloudinaryPublicId = data.publicId;
+        // 2. Fallback to /api/upload
+        if (!uploadSuccess) {
+          const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+          const formData = new FormData();
+          formData.append('file', selectedFile);
+          formData.append('folder', 'okara/products');
+
+          const res = await fetch(`${basePath}/api/upload`, {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await res.json();
+
+          if (!res.ok || !data.url) {
+            throw new Error(data.error || 'Failed to upload to Cloudinary');
+          }
+
+          finalImageUrl = data.url;
+          cloudinaryPublicId = data.publicId;
+        }
       }
 
       if (!finalImageUrl) {

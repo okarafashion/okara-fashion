@@ -1,8 +1,17 @@
 import ProductDetailView from '../../../components/products/ProductDetailView';
-import { fetchProductBySlug } from '../../../lib/supabaseClient';
+import { fetchProductBySlug, fetchProducts } from '../../../lib/supabaseClient';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export async function generateStaticParams() {
+  try {
+    const products = await fetchProducts(true);
+    if (!products || products.length === 0) return [];
+    return products.map((p) => ({
+      slug: p.slug,
+    }));
+  } catch (err) {
+    return [];
+  }
+}
 
 export default async function ProductPage({ params }) {
   const { slug } = params;

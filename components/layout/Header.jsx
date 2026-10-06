@@ -13,7 +13,7 @@ export default function Header() {
     { name: 'CORD SETS', href: '/shop?category=cord-sets' },
     { name: 'BLAZERS', href: '/shop?category=blazers' },
     { name: 'EDITORIAL DRESSES', href: '/shop?category=dresses' },
-    { name: 'ADMIN STUDIO', href: '/admin/products', highlight: true },
+    { name: 'SILK TOPS', href: '/shop?category=tops-shirts' },
   ];
 
   return (
@@ -71,11 +71,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-xs uppercase tracking-[0.18em] subtle-transition font-medium ${
-                  link.highlight
-                    ? 'px-3 py-1 bg-[var(--color-primary)] text-[var(--color-secondary)] hover:bg-[var(--color-primary-hover)]'
-                    : 'text-[var(--color-text)] hover:text-[var(--color-muted)]'
-                }`}
+                className="text-xs uppercase tracking-[0.18em] subtle-transition font-medium text-[var(--color-text)] hover:text-[var(--color-muted)]"
               >
                 {link.name}
               </Link>
@@ -121,11 +117,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm uppercase tracking-[0.2em] py-2 border-b border-[var(--color-border-light)] ${
-                  link.highlight
-                    ? 'text-[var(--color-primary)] font-bold'
-                    : 'text-[var(--color-text)]'
-                }`}
+                className="text-sm uppercase tracking-[0.2em] py-2 border-b border-[var(--color-border-light)] text-[var(--color-text)] hover:text-[var(--color-muted)] subtle-transition"
               >
                 {link.name}
               </Link>

@@ -69,8 +69,8 @@ export default function Footer() {
               <Link href="/shop" className="hover:text-white subtle-transition">
                 Garment Care Guide
               </Link>
-              <Link href="/admin/products" className="hover:text-white subtle-transition">
-                Image System Studio
+              <Link href="/shop" className="hover:text-white subtle-transition">
+                Atelier & Private Styling
               </Link>
             </div>
           </div>

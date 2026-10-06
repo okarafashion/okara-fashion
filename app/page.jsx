@@ -85,10 +85,10 @@ export default function HomePage() {
               Explore Collection
             </Link>
             <Link
-              href="/admin/products"
+              href="/shop?category=cord-sets"
               className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/60 text-white text-xs uppercase tracking-[0.25em] font-medium subtle-transition hover:bg-white hover:text-black text-center"
             >
-              Admin Studio
+              Cord Sets Edit
             </Link>
           </div>
         </div>
@@ -175,15 +175,15 @@ export default function HomePage() {
           </div>
         ) : displayFeatured.length === 0 ? (
           <div className="py-16 text-center border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]">
-            <h3 className="font-editorial text-2xl text-[var(--color-text)] mb-2">No Products Published Yet</h3>
+            <h3 className="font-editorial text-2xl text-[var(--color-text)] mb-2">New Season In Curation</h3>
             <p className="text-xs text-[var(--color-muted)] font-light max-w-md mx-auto mb-6">
-              Create your dynamic catalog pieces and upload images directly in the Admin Studio.
+              Our latest monochromatic silhouettes and architectural cord sets are arriving shortly. Explore our full collection in the meantime.
             </p>
             <Link
-              href="/admin/products"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-[var(--color-secondary)] text-xs uppercase tracking-widest font-medium"
+              href="/shop"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-[var(--color-secondary)] text-xs uppercase tracking-widest font-medium hover:bg-[var(--color-primary-hover)] subtle-transition"
             >
-              <PlusCircle size={15} /> Open Admin Studio
+              Browse Catalog
             </Link>
           </div>
         ) : (

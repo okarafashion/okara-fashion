@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ProductImageManager from '../../../components/admin/ProductImageManager';
+import AdminAuthGuard from '../../../components/admin/AdminAuthGuard';
 import {
   fetchProducts,
   fetchCategories,
@@ -259,7 +260,8 @@ export default function AdminProductsPage() {
   const currentProduct = products.find((p) => p.id === selectedProductId) || products[0];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+    <AdminAuthGuard>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
       {/* Admin Top Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 mb-8 border-b border-[var(--color-border)]">
         <div>
@@ -934,6 +936,7 @@ export default function AdminProductsPage() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </AdminAuthGuard>
   );
 }

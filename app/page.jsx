@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ProductCard from '../components/products/ProductCard';
+import CloudinaryImage from '../components/ui/CloudinaryImage';
 import { fetchProducts, fetchCategories } from '../lib/supabaseClient';
-import { ArrowRight, Sparkles, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Truck, RefreshCw, PlusCircle } from 'lucide-react';
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -32,25 +33,35 @@ export default function HomePage() {
 
   const featuredProducts = products.filter((p) => p.is_featured);
   const newArrivals = products.filter((p) => p.is_new_arrival);
+  const displayFeatured = featuredProducts.length > 0 ? featuredProducts : products.slice(0, 4);
+  const displayNewArrivals = newArrivals.length > 0 ? newArrivals : products.slice(0, 4);
+
+  // Dynamic hero image from first featured piece cover or uploaded banner
+  const heroCoverProduct = products.find((p) => p.images && p.images.length > 0);
+  const heroCoverImage = heroCoverProduct?.images?.find((img) => img.is_cover)?.image_url || heroCoverProduct?.images?.[0]?.image_url;
 
   return (
     <div className="flex flex-col gap-16 md:gap-28 pb-20">
       {/* 1. EDITORIAL HERO CAMPAIGN BANNER */}
       <section className="relative w-full min-h-[85vh] bg-black flex items-center justify-center overflow-hidden">
-        {/* Background Editorial Visual */}
+        {/* Background Editorial Visual (Dynamic from uploaded product or rich luxury dark atmosphere) */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000&q=85"
-            alt="OKARA Monochromatic Fashion Campaign"
-            className="w-full h-full object-cover object-center brightness-[0.7] contrast-[1.08] grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+          {heroCoverImage ? (
+            <img
+              src={heroCoverImage}
+              alt="OKARA Monochromatic Fashion Campaign"
+              className="w-full h-full object-cover object-center brightness-[0.45] contrast-[1.1] grayscale"
+            />
+          ) : (
+            <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900 via-black to-black opacity-90" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         </div>
 
         {/* Hero Content Overlay */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6 text-white pt-12">
           {/* Subtle Brand Tag */}
-          <div className="inline-flex items-center gap-2 border border-white/30 px-3.5 py-1 text-[10px] tracking-[0.3em] uppercase font-light bg-black/40 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 border border-white/30 px-3.5 py-1 text-[10px] tracking-[0.3em] uppercase font-light bg-black/50 backdrop-blur-sm">
             <span>AUTUMN / WINTER 2026</span>
           </div>
 
@@ -74,62 +85,67 @@ export default function HomePage() {
               Explore Collection
             </Link>
             <Link
-              href="/shop?category=cord-sets"
+              href="/admin/products"
               className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/60 text-white text-xs uppercase tracking-[0.25em] font-medium subtle-transition hover:bg-white hover:text-black text-center"
             >
-              View Cord Sets
+              Admin Studio
             </Link>
           </div>
         </div>
       </section>
 
       {/* 2. CATEGORY ARCHITECTURE GRID */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[var(--color-border)]">
-          <div>
-            <span className="text-[11px] text-[var(--color-muted)] uppercase tracking-[0.25em] block mb-1">
-              Curated Wardrobe
-            </span>
-            <h2 className="font-editorial text-3xl md:text-4xl text-[var(--color-text)]">
-              Signature Silhouettes
-            </h2>
-          </div>
-          <Link
-            href="/shop"
-            className="text-xs uppercase tracking-[0.18em] text-[var(--color-text)] hover:text-[var(--color-muted)] subtle-transition inline-flex items-center gap-1.5 mt-3 md:mt-0"
-          >
-            View All Categories <ArrowRight size={14} />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
+      {categories.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[var(--color-border)]">
+            <div>
+              <span className="text-[11px] text-[var(--color-muted)] uppercase tracking-[0.25em] block mb-1">
+                Curated Wardrobe
+              </span>
+              <h2 className="font-editorial text-3xl md:text-4xl text-[var(--color-text)]">
+                Signature Silhouettes
+              </h2>
+            </div>
             <Link
-              key={cat.id}
-              href={`/shop?category=${cat.slug}`}
-              className="group relative flex flex-col overflow-hidden bg-[var(--color-surface-subtle)] border border-[var(--color-border)]"
+              href="/shop"
+              className="text-xs uppercase tracking-[0.18em] text-[var(--color-text)] hover:text-[var(--color-muted)] subtle-transition inline-flex items-center gap-1.5 mt-3 md:mt-0"
             >
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <img
-                  src={cat.image_url}
-                  alt={cat.name}
-                  className="w-full h-full object-cover object-center grayscale contrast-105 group-hover:scale-105 group-hover:grayscale-0 subtle-transition duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-5 left-5 right-5 text-white flex flex-col gap-1">
-                  <h3 className="font-editorial text-2xl font-medium tracking-tight">
-                    {cat.name}
-                  </h3>
-                  <p className="text-[11px] text-neutral-300 font-light line-clamp-1">
-                    {cat.description}
-                  </p>
-                </div>
-              </div>
+              View All Categories <ArrowRight size={14} />
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/shop?category=${cat.slug}`}
+                className="group relative flex flex-col overflow-hidden bg-[var(--color-surface-subtle)] border border-[var(--color-border)]"
+              >
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
+                  <CloudinaryImage
+                    src={cat.image_url}
+                    alt={cat.name}
+                    width={600}
+                    className="w-full h-full group-hover:scale-105 subtle-transition duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-5 left-5 right-5 text-white flex flex-col gap-1">
+                    <h3 className="font-editorial text-2xl font-medium tracking-tight">
+                      {cat.name}
+                    </h3>
+                    {cat.description && (
+                      <p className="text-[11px] text-neutral-300 font-light line-clamp-1">
+                        {cat.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 3. FEATURED EDITORIAL COLLECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -157,9 +173,22 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        ) : displayFeatured.length === 0 ? (
+          <div className="py-16 text-center border border-dashed border-[var(--color-border)] bg-[var(--color-surface)]">
+            <h3 className="font-editorial text-2xl text-[var(--color-text)] mb-2">No Products Published Yet</h3>
+            <p className="text-xs text-[var(--color-muted)] font-light max-w-md mx-auto mb-6">
+              Create your dynamic catalog pieces and upload images directly in the Admin Studio.
+            </p>
+            <Link
+              href="/admin/products"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-[var(--color-secondary)] text-xs uppercase tracking-widest font-medium"
+            >
+              <PlusCircle size={15} /> Open Admin Studio
+            </Link>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
-            {featuredProducts.map((product) => (
+            {displayFeatured.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -171,7 +200,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <div className="w-20 h-20 relative mb-2">
             <Image
-              src="/okara-logo.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/okara-logo.png`}
               alt="OKARA Brand Seal"
               width={80}
               height={80}
@@ -196,31 +225,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. NEW ARRIVALS EDITORIAL CAROUSEL / GRID */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[var(--color-border)]">
-          <div>
-            <span className="text-[11px] text-[var(--color-muted)] uppercase tracking-[0.25em] block mb-1">
-              New Releases
-            </span>
-            <h2 className="font-editorial text-3xl md:text-4xl text-[var(--color-text)]">
-              Latest In Studio
-            </h2>
+      {/* 5. NEW ARRIVALS */}
+      {displayNewArrivals.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[var(--color-border)]">
+            <div>
+              <span className="text-[11px] text-[var(--color-muted)] uppercase tracking-[0.25em] block mb-1">
+                New Releases
+              </span>
+              <h2 className="font-editorial text-3xl md:text-4xl text-[var(--color-text)]">
+                Latest In Studio
+              </h2>
+            </div>
+            <Link
+              href="/shop"
+              className="text-xs uppercase tracking-[0.18em] text-[var(--color-text)] hover:text-[var(--color-muted)] subtle-transition inline-flex items-center gap-1.5 mt-3 md:mt-0"
+            >
+              Shop Full Wardrobe <ArrowRight size={14} />
+            </Link>
           </div>
-          <Link
-            href="/shop"
-            className="text-xs uppercase tracking-[0.18em] text-[var(--color-text)] hover:text-[var(--color-muted)] subtle-transition inline-flex items-center gap-1.5 mt-3 md:mt-0"
-          >
-            Shop Full Wardrobe <ArrowRight size={14} />
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
-          {newArrivals.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+            {displayNewArrivals.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 6. PILLARS OF LUXURY PROMISE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4">

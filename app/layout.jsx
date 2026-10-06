@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: 'OKARA | Luxury Monochromatic Fashion',
     description: 'Wear Your Story with sculptural silhouettes and refined cord sets.',
-    images: ['/okara-logo.png'],
+    images: [`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/okara-logo.png`],
   },
 };
 

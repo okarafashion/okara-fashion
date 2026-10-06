@@ -51,7 +51,7 @@ export default function Header() {
         <Link href="/" className="flex flex-col items-center group py-2">
           <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
             <Image
-              src="/okara-logo.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/okara-logo.png`}
               alt="OKARA Clothing Brand - Wear Your Story"
               width={64}
               height={64}

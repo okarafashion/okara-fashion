@@ -1,25 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
   reactStrictMode: true,
+  ...(process.env.STATIC_EXPORT === 'true' ? { output: 'export' } : {}),
   images: {
     unoptimized: true,
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        hostname: '*.supabase.co',
       },
     ],
   },
   ...(process.env.NEXT_PUBLIC_BASE_PATH
     ? {
         basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-        assetPrefix: `${process.env.NEXT_PUBLIC_BASE_PATH}/`,
       }
     : {}),
 };

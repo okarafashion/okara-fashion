@@ -24,7 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local environment files (contains secrets)
-.env*
 !.env.example
 .env.local
 .env*.local

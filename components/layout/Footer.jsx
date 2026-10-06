@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="md:col-span-1 flex flex-col gap-4">
             <div className="w-16 h-16 relative">
               <Image
-                src="/okara-logo.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/okara-logo.png`}
                 alt="OKARA Fashion"
                 width={64}
                 height={64}

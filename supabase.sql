@@ -291,16 +291,16 @@ INSERT INTO colors (id, name, slug, hex_code, sort_order) VALUES
 
 -- Sizes
 INSERT INTO sizes (id, name, slug, sort_order) VALUES
-('s1000000-0000-0000-0000-000000000001', 'XS', 'xs', 1),
-('s1000000-0000-0000-0000-000000000002', 'S', 's', 2),
-('s1000000-0000-0000-0000-000000000003', 'M', 'm', 3),
-('s1000000-0000-0000-0000-000000000004', 'L', 'l', 4),
-('s1000000-0000-0000-0000-000000000005', 'XL', 'xl', 5);
+('e1000000-0000-0000-0000-000000000001', 'XS', 'xs', 1),
+('e1000000-0000-0000-0000-000000000002', 'S', 's', 2),
+('e1000000-0000-0000-0000-000000000003', 'M', 'm', 3),
+('e1000000-0000-0000-0000-000000000004', 'L', 'l', 4),
+('e1000000-0000-0000-0000-000000000005', 'XL', 'xl', 5);
 
 -- Products
 INSERT INTO products (id, category_id, name, slug, subtitle, description, fabric_details, care_instructions, fit_type, base_price, sale_price, is_featured, is_new_arrival) VALUES
 (
-    'p1000000-0000-0000-0000-000000000001',
+    'a1000000-0000-0000-0000-000000000001',
     'c1000000-0000-0000-0000-000000000001',
     'Architectural Tailored Cord Set',
     'architectural-tailored-cord-set',
@@ -315,7 +315,7 @@ INSERT INTO products (id, category_id, name, slug, subtitle, description, fabric
     true
 ),
 (
-    'p1000000-0000-0000-0000-000000000002',
+    'a1000000-0000-0000-0000-000000000002',
     'c1000000-0000-0000-0000-000000000002',
     'Sculpted Monochromatic Blazer',
     'sculpted-monochromatic-blazer',
@@ -330,7 +330,7 @@ INSERT INTO products (id, category_id, name, slug, subtitle, description, fabric
     false
 ),
 (
-    'p1000000-0000-0000-0000-000000000003',
+    'a1000000-0000-0000-0000-000000000003',
     'c1000000-0000-0000-0000-000000000003',
     'Column Silk Maxi Dress',
     'column-silk-maxi-dress',
@@ -345,7 +345,7 @@ INSERT INTO products (id, category_id, name, slug, subtitle, description, fabric
     true
 ),
 (
-    'p1000000-0000-0000-0000-000000000004',
+    'a1000000-0000-0000-0000-000000000004',
     'c1000000-0000-0000-0000-000000000004',
     'Asymmetric Draped Mulberry Silk Top',
     'asymmetric-draped-mulberry-silk-top',
@@ -363,39 +363,39 @@ INSERT INTO products (id, category_id, name, slug, subtitle, description, fabric
 -- Product Colors Links
 INSERT INTO product_colors (product_id, color_id, is_default) VALUES
 -- Architectural Cord Set in Noir Black and Pearl White
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', true),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', false),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', false),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', true),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', false),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', false),
 
 -- Sculpted Blazer in Noir Black and Charcoal Slate
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', true),
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', false),
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', true),
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', false),
 
 -- Column Maxi Dress in Noir Black and Pearl White
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', true),
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', false),
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', true),
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', false),
 
 -- Asymmetric Top in Pearl White and Champagne Nude
-('p1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', true),
-('p1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000003', false);
+('a1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', true),
+('a1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000003', false);
 
 -- Product Sizes Links
 INSERT INTO product_sizes (product_id, size_id, stock_quantity, sku) VALUES
-('p1000000-0000-0000-0000-000000000001', 's1000000-0000-0000-0000-000000000001', 8, 'OKR-CRD-XS'),
-('p1000000-0000-0000-0000-000000000001', 's1000000-0000-0000-0000-000000000002', 15, 'OKR-CRD-S'),
-('p1000000-0000-0000-0000-000000000001', 's1000000-0000-0000-0000-000000000003', 12, 'OKR-CRD-M'),
-('p1000000-0000-0000-0000-000000000001', 's1000000-0000-0000-0000-000000000004', 6, 'OKR-CRD-L'),
+('a1000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000001', 8, 'OKR-CRD-XS'),
+('a1000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000002', 15, 'OKR-CRD-S'),
+('a1000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000003', 12, 'OKR-CRD-M'),
+('a1000000-0000-0000-0000-000000000001', 'e1000000-0000-0000-0000-000000000004', 6, 'OKR-CRD-L'),
 
-('p1000000-0000-0000-0000-000000000002', 's1000000-0000-0000-0000-000000000002', 10, 'OKR-BLZ-S'),
-('p1000000-0000-0000-0000-000000000002', 's1000000-0000-0000-0000-000000000003', 14, 'OKR-BLZ-M'),
-('p1000000-0000-0000-0000-000000000002', 's1000000-0000-0000-0000-000000000004', 5, 'OKR-BLZ-L'),
+('a1000000-0000-0000-0000-000000000002', 'e1000000-0000-0000-0000-000000000002', 10, 'OKR-BLZ-S'),
+('a1000000-0000-0000-0000-000000000002', 'e1000000-0000-0000-0000-000000000003', 14, 'OKR-BLZ-M'),
+('a1000000-0000-0000-0000-000000000002', 'e1000000-0000-0000-0000-000000000004', 5, 'OKR-BLZ-L'),
 
-('p1000000-0000-0000-0000-000000000003', 's1000000-0000-0000-0000-000000000001', 5, 'OKR-DRS-XS'),
-('p1000000-0000-0000-0000-000000000003', 's1000000-0000-0000-0000-000000000002', 11, 'OKR-DRS-S'),
-('p1000000-0000-0000-0000-000000000003', 's1000000-0000-0000-0000-000000000003', 9, 'OKR-DRS-M'),
+('a1000000-0000-0000-0000-000000000003', 'e1000000-0000-0000-0000-000000000001', 5, 'OKR-DRS-XS'),
+('a1000000-0000-0000-0000-000000000003', 'e1000000-0000-0000-0000-000000000002', 11, 'OKR-DRS-S'),
+('a1000000-0000-0000-0000-000000000003', 'e1000000-0000-0000-0000-000000000003', 9, 'OKR-DRS-M'),
 
-('p1000000-0000-0000-0000-000000000004', 's1000000-0000-0000-0000-000000000002', 12, 'OKR-TOP-S'),
-('p1000000-0000-0000-0000-000000000004', 's1000000-0000-0000-0000-000000000003', 18, 'OKR-TOP-M');
+('a1000000-0000-0000-0000-000000000004', 'e1000000-0000-0000-0000-000000000002', 12, 'OKR-TOP-S'),
+('a1000000-0000-0000-0000-000000000004', 'e1000000-0000-0000-0000-000000000003', 18, 'OKR-TOP-M');
 
 -- ==============================================================================
 -- 8. PRODUCT IMAGES (Multi-image, Color-specific, Cover Designated)
@@ -403,48 +403,48 @@ INSERT INTO product_sizes (product_id, size_id, stock_quantity, sku) VALUES
 
 -- 1. Architectural Tailored Cord Set - Noir Black Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Front Studio Editorial', 2, false),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Side Silhouette', 3, false),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Fabric & Stitch Detail', 4, false);
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Front Studio Editorial', 2, false),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Side Silhouette', 3, false),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Noir Black - Fabric & Stitch Detail', 4, false);
 
 -- 1. Architectural Tailored Cord Set - Pearl White Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Movement & Drape', 2, false),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Tailoring Detail', 3, false);
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Movement & Drape', 2, false),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Pearl White - Tailoring Detail', 3, false);
 
 -- 1. Architectural Tailored Cord Set - Champagne Nude Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Champagne Nude - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Champagne Nude - Close Shot', 2, false);
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Champagne Nude - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000001', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80', 'Architectural Cord Set in Champagne Nude - Close Shot', 2, false);
 
 -- 2. Sculpted Monochromatic Blazer - Noir Black Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer in Noir Black - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer in Noir Black - Editorial Front', 2, false),
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer - Lapel & Button Craftsmanship', 3, false);
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer in Noir Black - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer in Noir Black - Editorial Front', 2, false),
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=80', 'Sculpted Monochromatic Blazer - Lapel & Button Craftsmanship', 3, false);
 
 -- 2. Sculpted Monochromatic Blazer - Charcoal Slate Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80', 'Sculpted Blazer in Charcoal Slate - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=1200&q=80', 'Sculpted Blazer in Charcoal Slate - Studio Angle', 2, false);
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80', 'Sculpted Blazer in Charcoal Slate - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000002', 'b1000000-0000-0000-0000-000000000004', 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=1200&q=80', 'Sculpted Blazer in Charcoal Slate - Studio Angle', 2, false);
 
 -- 3. Column Silk Maxi Dress - Noir Black Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Noir Black - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Noir Black - Back Line View', 2, false);
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Noir Black - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Noir Black - Back Line View', 2, false);
 
 -- 3. Column Silk Maxi Dress - Pearl White Gallery
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Pearl White - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Pearl White - Full Length Movement', 2, false);
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Pearl White - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000003', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=1200&q=80', 'Column Silk Maxi Dress in Pearl White - Full Length Movement', 2, false);
 
 -- 4. Asymmetric Draped Top - Pearl White & Champagne Nude
 INSERT INTO product_images (product_id, color_id, image_url, alt_text, sort_order, is_cover) VALUES
-('p1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top in Pearl White - Cover View', 1, true),
-('p1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top - Shoulder Silhouette', 2, false),
-('p1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top in Champagne Nude - Cover View', 1, true);
+('a1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top in Pearl White - Cover View', 1, true),
+('a1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000002', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top - Shoulder Silhouette', 2, false),
+('a1000000-0000-0000-0000-000000000004', 'b1000000-0000-0000-0000-000000000003', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80', 'Asymmetric Draped Top in Champagne Nude - Cover View', 1, true);
 
 -- ==============================================================================
 -- 9. HELPER VIEWS FOR FAST FULL-PRODUCT FETCHING WITH IMAGES & COLORS

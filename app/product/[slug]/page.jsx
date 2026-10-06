@@ -1,15 +1,18 @@
 import ProductDetailView from '../../../components/products/ProductDetailView';
-import { MOCK_PRODUCTS } from '../../../data/mockProducts';
+import { fetchProductBySlug } from '../../../lib/supabaseClient';
 
-export async function generateStaticParams() {
-  return MOCK_PRODUCTS.map((product) => ({
-    slug: product.slug,
-  }));
-}
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
-export default function ProductPage({ params }) {
+export default async function ProductPage({ params }) {
   const { slug } = params;
-  const initialProduct = MOCK_PRODUCTS.find((p) => p.slug === slug) || null;
+  let initialProduct = null;
+
+  try {
+    initialProduct = await fetchProductBySlug(slug);
+  } catch (err) {
+    console.error('Error loading product page:', err);
+  }
 
   return <ProductDetailView initialProduct={initialProduct} slug={slug} />;
 }

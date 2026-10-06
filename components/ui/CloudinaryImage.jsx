@@ -28,22 +28,24 @@ export default function CloudinaryImage({
       style={{ aspectRatio }}
       onClick={onClick}
     >
-      {/* Subtle Shimmer Skeleton while loading */}
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-neutral-200 animate-pulse" />
+      {!optimizedSrc || hasError ? (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-900 text-neutral-400 p-4 text-center select-none">
+          <span className="font-editorial text-xl tracking-[0.3em] text-neutral-300">OKARA</span>
+          <span className="text-[9px] uppercase tracking-[0.2em] text-neutral-500 mt-1">Editorial Studio</span>
+        </div>
+      ) : (
+        <img
+          src={optimizedSrc}
+          alt={alt}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setHasError(true)}
+          className={`w-full h-full object-cover object-center subtle-transition ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
       )}
-
-      <img
-        src={hasError ? 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80' : optimizedSrc}
-        alt={alt}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
-        className={`w-full h-full object-cover object-center subtle-transition ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
     </div>
   );
 }
